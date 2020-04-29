@@ -6,8 +6,18 @@
   text-decoration: none;
 }
 
+.input {
+  width: 500px;
+  margin-top: 20px;
+}
+
 body {
   background-color: aquamarine;
+  height: 100vh;
+}
+
+.main-body {
+  border-radius: 5px;
   height: 100vh;
 }
 

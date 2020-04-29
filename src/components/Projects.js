@@ -2,15 +2,40 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 export default function Projects() {
     const [projects, setProjects] = useState([])
-    const URL = 'https://training-management-backend.herokuapp.com/projects/'
+    const [isLoading, setIsLoading] = useState(false);
+    const [search, setSearch] = useState('')
+    const URL = `https://training-management-backend.herokuapp.com/projects/?Name_contains=${search}`
     const getProjects = async () => {
-        const projs = await axios.get(URL)
-        setProjects(projs.data)
+        setIsLoading(true);
+        try {
+            const projs = await axios.get(URL)
+            setProjects(projs.data)
+        } catch (e) {
+            console.log("error")
+        }
+        setIsLoading(false);
+    }
+
+    const searchUrl = `https://training-management-backend.herokuapp.com/projects/`
+
+    const getQueryProjects = async () => {
+        setIsLoading(true);
+        try {
+            const projs = await axios.get(URL)
+            setProjects(projs.data)
+        } catch (e) {
+            console.log("error")
+        }
+        setIsLoading(false);
     }
 
     useEffect(() => {
         getProjects()
     }, [])
+
+    useEffect(() => {
+        getQueryProjects()
+    }, [search])
 
     const listProjects = projects.map(project => (
         <div className="card" key={project.id}>
@@ -50,8 +75,13 @@ export default function Projects() {
 
     return (
         <div className="container">
-            <input className="input is-rounded" type="text" placeholder="Rounded input"></input>
-            {listProjects}
+            <input className="input is-rounded" type="text" placeholder="Search Projects" onChange={e=> setSearch(e.target.value)}></input>
+            {isLoading ? (
+                <div className="main-body">loading...</div>
+            ) : (
+                    <div>{listProjects}</div>
+
+                )}
         </div>
     )
 }
