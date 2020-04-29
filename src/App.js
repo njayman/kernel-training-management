@@ -11,7 +11,7 @@ function App() {
           <a className="navbar-item" href="/">Training Management</a>
         </div>
         <div class="navbar-end">
-          <a className="navbar-item" href="">Admin</a>
+          <a className="navbar-item" href="https://training-management-backend.herokuapp.com/admin/">Admin</a>
         </div>
       </nav>
       <Projects />
