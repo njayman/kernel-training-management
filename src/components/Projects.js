@@ -61,7 +61,7 @@ export default function Projects() {
                                     </p>
                                     <div className="card-footer-item">
                                         {step.files ?
-                                            <a href={`https://training-management-backend.herokuapp.com${step.files.url}`}>View File</a> : <div>No file uploaded</div>
+                                            <a href={step.files.url}>View File</a> : <div>No file uploaded</div>
                                         }
                                     </div>
                                 </footer>
@@ -75,7 +75,7 @@ export default function Projects() {
 
     return (
         <div className="container">
-            <input className="input is-rounded" type="text" placeholder="Search Projects" onChange={e=> setSearch(e.target.value)}></input>
+            <input className="input is-rounded" type="text" placeholder="Search Projects" onChange={e => setSearch(e.target.value)}></input>
             {isLoading ? (
                 <div className="main-body">loading...</div>
             ) : (
