@@ -10,6 +10,9 @@ function App() {
         <div className="navbar-brand">
           <a className="navbar-item" href="/">Training Management</a>
         </div>
+        <div class="navbar-end">
+          <a className="navbar-item" href="">Admin</a>
+        </div>
       </nav>
       <Projects />
     </div>
