@@ -54,7 +54,7 @@ export default function Projects() {
                                     {step.Title}
                                 </p>
                                 <footer className="card-footer">
-                                    <p id={step.Status} className="card-footer-item">
+                                    <p id="{step.Status}" className="card-footer-item">
                                         <span>
                                             {step.Status}
                                         </span>
