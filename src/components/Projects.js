@@ -10,7 +10,6 @@ export default function Projects() {
     const [projects, setProjects] = useState([])
     const [modal, setModal] = useState('')
     const [isLoading, setIsLoading] = useState(false);
-    const [stepName, setStepname] = useState()
     const [singleStepTitle, setSingleStepTitle] = useState('')
     const [singleStepStatus, setSingleStepStatus] = useState('')
     const [singleStepUrl, setSingleStepUrl] = useState('')
@@ -68,7 +67,7 @@ export default function Projects() {
                 <div className="steps">
                     {project.fields.steps ?
                         <div>{project.fields.steps.map((step, index) => (
-                            <button id={step.fields.status} className="button" value={step.fields.steptitle} onMouseOver={e => setStepname(e.target.value)} onMouseLeave={() => setStepname(null)} onClick={e => showModal(step.sys.id)} key={index}>{index + 1} {stepName}</button>
+                            <button id={step.fields.status} className="button" onClick={e => showModal(step.sys.id)} key={index}>{index + 1}. {step.fields.steptitle}</button>
                         ))}</div> : <div>No Steps added</div>
                     }
                 </div>
