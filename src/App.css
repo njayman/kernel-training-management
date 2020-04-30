@@ -1,6 +1,7 @@
-html{
+html {
   background-color: rgb(46, 46, 46);
 }
+
 .App {
   text-align: center;
 }
@@ -38,7 +39,6 @@ body {
 
 .main-body h1 {
   color: #fff;
-
 }
 
 .card {
@@ -58,6 +58,14 @@ body {
   background-color: rgb(190, 190, 190);
 }
 
+.steps .card .card-content {
+  padding: 0;
+}
+
+.title {
+  margin-bottom: 0;
+}
+
 #done {
   color: rgb(42, 173, 64);
   background-color: rgb(236, 236, 236);
@@ -73,12 +81,12 @@ body {
   background-color: rgb(236, 236, 236);
 }
 
-.steps {
+.steps div {
   display: flex;
   flex-wrap: wrap;
 }
 
-.steps .card {
+.steps div .card {
   margin: 10px 10px 0 10px;
   border-radius: 5px;
 }
