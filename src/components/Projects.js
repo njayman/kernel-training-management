@@ -1,15 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const client = require("contentful").createClient({
     accessToken: "qEYl0Cr9DXuoJmSHNl_bikN-QxDQfg8K49mChfz8Wpc",
+    environment: 'master',
     space: "1cvzi7txphx1"
 });
 
 export default function Projects() {
     const [projects, setProjects] = useState([])
+    const [modal, setModal] = useState('')
     const [isLoading, setIsLoading] = useState(false);
-    const [search, setSearch] = useState('')
+    const [stepName, setStepname] = useState()
+    const [singleStepTitle, setSingleStepTitle] = useState('')
+    const [singleStepStatus, setSingleStepStatus] = useState('')
+    const [singleStepUrl, setSingleStepUrl] = useState('')
+
+    const showModal = async (entry) => {
+        setIsLoading(true);
+        setModal('is-active')
+        try {
+            const step = await client.getEntries({
+                content_type: 'steps',
+                'sys.id': entry
+            })
+            setSingleStepTitle(step.items[0].fields.steptitle)
+            setSingleStepStatus(step.items[0].fields.status)
+            if (step.items[0].fields.file) {
+                setSingleStepUrl(step.items[0].fields.file.fields.file.url)
+            }
+
+            setIsLoading(false);
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     const getProjects = async () => {
         setIsLoading(true);
         try {
@@ -25,7 +50,6 @@ export default function Projects() {
 
 
 
-
     useEffect(() => {
         getProjects()
     }, [])
@@ -38,30 +62,13 @@ export default function Projects() {
             </header>
             <div className="card-content">
                 <div className="content">
-                    {project.fields.description}
+                    <p>{project.fields.description}</p>
+                    <br />
                 </div>
                 <div className="steps">
                     {project.fields.steps ?
                         <div>{project.fields.steps.map((step, index) => (
-                            <div className="card" key={index} >
-                                <div className="card-content">
-                                    <p className="title">
-                                        {step.fields.steptitle}
-                                    </p>
-                                    <footer className="card-footer">
-                                        <p id={step.fields.status} className="card-footer-item">
-                                            <span>
-                                                {step.fields.status}
-                                            </span>
-                                        </p>
-                                        <div className="card-footer-item">
-                                            {step.fields.file ?
-                                                <a key={index} target="_blank" href={step.fields.file.fields.file.url}>View File</a> : <div>No file uploaded</div>
-                                            }
-                                        </div>
-                                    </footer>
-                                </div>
-                            </div>
+                            <button id={step.fields.status} className="button" value={step.fields.steptitle} onMouseOver={e => setStepname(e.target.value)} onMouseLeave={() => setStepname(null)} onClick={e => showModal(step.sys.id)} key={index}>{index + 1} {stepName}</button>
                         ))}</div> : <div>No Steps added</div>
                     }
                 </div>
@@ -78,6 +85,25 @@ export default function Projects() {
                     <div>{listProjects}</div>
 
                 )}
+            <div className={`modal ${modal}`}>
+                <div className="modal-background"></div>
+                <div className="modal-content">
+                    {!isLoading ? (
+                        <div className="card-content">
+                            <h1>Step title : {singleStepTitle}</h1>
+                            <p>Step title : {singleStepStatus}</p>
+                            {singleStepUrl !== '' ? (
+                                <a className="button" href={singleStepUrl} rel="noopener noreferrer" target="_blank">View File</a>
+                            ) : (
+                                    <h1>no file uploaded</h1>
+                                )}
+                        </div>
+                    ) : (
+                            <h6>Loading</h6>
+                        )}
+                </div>
+                <button className="modal-close is-large" onClick={() => setModal('')}></button>
+            </div>
         </div>
     )
 }

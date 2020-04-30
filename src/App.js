@@ -9,7 +9,7 @@ function App() {
       <div className="container">
         <nav className="navbar">
           <a className="navbar-item" href="/">Training Management</a>
-          <a className="navbar-item" target="_blank" href="https://training-management-backend.herokuapp.com/admin/">Admin</a>
+          <a className="navbar-item" rel="noopener noreferrer" target="_blank" href="https://app.contentful.com/spaces/ssx7fwlkc9oh/">Admin</a>
         </nav>
       </div>
       <Projects />
