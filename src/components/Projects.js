@@ -26,6 +26,8 @@ export default function Projects() {
             setSingleStepStatus(step.items[0].fields.status)
             if (step.items[0].fields.file) {
                 setSingleStepUrl(step.items[0].fields.file.fields.file.url)
+            } else {
+                setSingleStepUrl('')
             }
 
             setIsLoading(false);
