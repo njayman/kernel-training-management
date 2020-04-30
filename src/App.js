@@ -8,9 +8,7 @@ function App() {
     <div className="App">
       <div className="container">
         <nav className="navbar">
-          <div className="navbar-brand">
-            <a className="navbar-item" href="/">Training Management</a>
-          </div>
+          <a className="navbar-item" href="/">Training Management</a>
           <a className="navbar-item" target="_blank" href="https://training-management-backend.herokuapp.com/admin/">Admin</a>
         </nav>
       </div>

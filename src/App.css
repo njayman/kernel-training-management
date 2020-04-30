@@ -1,3 +1,6 @@
+html{
+  background-color: rgb(46, 46, 46);
+}
 .App {
   text-align: center;
 }
@@ -14,16 +17,28 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  background-color: rgb(46, 46, 46);
+}
+
+.navbar-item {
+  color: #fff;
+  font-weight: 400;
 }
 
 body {
-  background-color: rgb(0, 0, 0);
-  height: 100vh;
+  background-color: rgb(46, 46, 46);
+  height: 100%;
+  padding: 20px;
 }
 
 .main-body {
   border-radius: 5px;
   height: 100vh;
+}
+
+.main-body h1 {
+  color: #fff;
+
 }
 
 .card {
@@ -39,7 +54,7 @@ body {
   color: #fff;
 }
 
-.card-content{
+.card-content {
   background-color: rgb(190, 190, 190);
 }
 
