@@ -11,6 +11,11 @@
   margin-top: 20px;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
 body {
   background-color: aquamarine;
   height: 100vh;
