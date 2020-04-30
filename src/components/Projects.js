@@ -92,7 +92,7 @@ export default function Projects() {
                     {!isLoading ? (
                         <div className="card-content">
                             <h1>Step title : {singleStepTitle}</h1>
-                            <p>Step title : {singleStepStatus}</p>
+                            <p>Step Status : {singleStepStatus}</p>
                             {singleStepUrl !== '' ? (
                                 <a className="button" href={singleStepUrl} rel="noopener noreferrer" target="_blank">View File</a>
                             ) : (
